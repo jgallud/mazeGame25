@@ -1,5 +1,5 @@
 "
-Clase definida en el libro Design Patterns
+CreatorB crea laberintos con Pared normal
 "
 Class {
 	#name : #Creator,
@@ -8,9 +8,15 @@ Class {
 }
 
 { #category : #'factory method' }
+Creator >> fabricarBomba [
+	^Bomba new
+]
+
+{ #category : #'factory method' }
 Creator >> fabricarHabitacion:unNum [
 	|hab|
-	hab:=Habitacion new num:unNum.
+	hab:=Habitacion new.
+	hab num:unNum.
 	hab este:self fabricarPared.
 	hab oeste:self fabricarPared.
 	hab norte:self fabricarPared.
@@ -20,6 +26,7 @@ Creator >> fabricarHabitacion:unNum [
 
 { #category : #'factory method' }
 Creator >> fabricarJuego [
+" ^ representa return"
 	^Juego new
 ]
 

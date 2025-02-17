@@ -1,5 +1,5 @@
 "
-Se encarga de crear laberintos con bombas
+CreatorB crea laberintos con ParedBomba
 "
 Class {
 	#name : #CreatorB,

@@ -1,3 +1,8 @@
+"
+Es la interfaz común de los elementos del mapa
+
+
+"
 Class {
 	#name : #ElementoMapa,
 	#superclass : #Object,

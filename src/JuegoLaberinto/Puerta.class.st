@@ -28,8 +28,9 @@ Puerta >> abierta: anObject [
 
 { #category : #caminar }
 Puerta >> entrar [
-	"comprobar si abierta"
-	Transcript show:'Te has chocado con una puerta';cr.
+	self abierta 
+	ifTrue:[ Transcript show:'La puerta está abierta';cr]
+	ifFalse:[ Transcript show:'La puerta está cerrada';cr].
 ]
 
 { #category : #initialization }

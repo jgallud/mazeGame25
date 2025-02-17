@@ -14,6 +14,12 @@ Class {
 	#category : #'JuegoLaberinto-Laberinto'
 }
 
+{ #category : #caminar }
+Habitacion >> entrar [
+	Transcript show:'Estas en la habitación';cr.
+
+]
+
 { #category : #accessing }
 Habitacion >> este [
 
