@@ -5,10 +5,28 @@ Class {
 	#name : #Juego,
 	#superclass : #Object,
 	#instVars : [
-		'laberinto'
+		'laberinto',
+		'bichos'
 	],
 	#category : #'JuegoLaberinto-Laberinto'
 }
+
+{ #category : #'gestion-bichos' }
+Juego >> agregarBicho:unBicho [
+	self bichos add:unBicho
+]
+
+{ #category : #accessing }
+Juego >> bichos [
+
+	^ bichos
+]
+
+{ #category : #accessing }
+Juego >> bichos: anObject [
+
+	bichos := anObject
+]
 
 { #category : #laberintos }
 Juego >> crearLaberinto2Habitaciones [
@@ -119,6 +137,16 @@ Juego >> crearLaberinto2HabitacionesFMD:unFM [
 	
 	^self laberinto
 	
+]
+
+{ #category : #'gestion-bichos' }
+Juego >> eliminarBicho:unBicho [
+	self bichos remove:unBicho ifAbsent:[Transcript show:'No existe ese bicho';cr.]
+]
+
+{ #category : #initialization }
+Juego >> initialize [ 
+	bichos:=OrderedCollection new.
 ]
 
 { #category : #accessing }

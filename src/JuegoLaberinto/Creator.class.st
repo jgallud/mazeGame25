@@ -7,6 +7,37 @@ Class {
 	#category : #'JuegoLaberinto-FactoryMethod'
 }
 
+{ #category : #'as yet unclassified' }
+Creator >> cambiarAModoAgresivo:unBicho [
+
+	unBicho modo:Agresivo new.
+	unBicho poder:10.
+	
+]
+
+{ #category : #'fm-bichos' }
+Creator >> fabricarBichoAgresivo [
+	| bicho |
+	
+	bicho:=Bicho new.
+	bicho modo: Agresivo new.
+	bicho vidas:5.
+	bicho poder:5.
+	^bicho
+]
+
+{ #category : #'fm-bichos' }
+Creator >> fabricarBichoPerezoso [
+	| bicho |
+	
+	bicho:=Bicho new.
+	bicho modo: Perezoso new.
+	bicho poder:1.
+	bicho vidas:1.
+	"bicho poder:5."
+	^bicho
+]
+
 { #category : #'factory method' }
 Creator >> fabricarBomba [
 	^Bomba new
