@@ -3,7 +3,7 @@ Es un EM que tiene cuatro lados
 "
 Class {
 	#name : #Habitacion,
-	#superclass : #ElementoMapa,
+	#superclass : #Contenedor,
 	#instVars : [
 		'num',
 		'norte',
@@ -18,6 +18,11 @@ Class {
 Habitacion >> entrar [
 	Transcript show:'Estas en la habitación';cr.
 
+]
+
+{ #category : #consulta }
+Habitacion >> esHabitacion [
+	^true
 ]
 
 { #category : #accessing }

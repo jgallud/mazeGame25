@@ -33,6 +33,11 @@ Puerta >> entrar [
 	ifFalse:[ Transcript show:'La puerta está cerrada';cr].
 ]
 
+{ #category : #consulta }
+Puerta >> esPuerta [
+	^true
+]
+
 { #category : #initialization }
 Puerta >> initialize [ 
 	abierta:=false.

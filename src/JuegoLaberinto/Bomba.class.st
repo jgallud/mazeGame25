@@ -28,6 +28,11 @@ Bomba >> entrar [
 		ifFalse:[ self em entrar]
 ]
 
+{ #category : #consulta }
+Bomba >> esBomba [
+	^true
+]
+
 { #category : #initialization }
 Bomba >> initialize [ 
 	activa:=false.

@@ -13,9 +13,19 @@ Class {
 	#category : #'JuegoLaberinto-Laberinto'
 }
 
+{ #category : #'as yet unclassified' }
+Bicho >> actua [
+	self modo actua:self
+]
+
 { #category : #consulta }
 Bicho >> esAgresivo [
 	^self modo esAgresivo
+]
+
+{ #category : #initialization }
+Bicho >> esHabitacion [ 
+^true
 ]
 
 { #category : #consulta }
@@ -25,14 +35,14 @@ Bicho >> esPerezoso [
 
 { #category : #initialization }
 Bicho >> iniAgresivo [
- self modo:Agresivo new.
- self poder:10.
+	self modo:Agresivo new.
+	self poder:10.
 ]
 
 { #category : #initialization }
 Bicho >> iniPerezoso [
- self modo:Perezoso new.
- self poder:1.
+	self modo:Perezoso new.
+	self poder:1.
 ]
 
 { #category : #initialization }

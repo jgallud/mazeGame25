@@ -96,8 +96,10 @@ Juego >> crearLaberinto2HabitacionesFM:unFM [
 	puerta lado1:hab1.
 	puerta lado2:hab2.
 	
-	hab1 sur:puerta.
-	hab2 norte:puerta.
+	hab1 ponerEnOr:unFM fabricarSur elemento:puerta.
+	hab2 ponerEnOr:unFM fabricarNorte elemento:puerta.
+	"hab1 sur:puerta.
+	hab2 norte:puerta."
 	
 	self laberinto:unFM fabricarLaberinto.
 	self laberinto agregarHabitacion: hab1.
@@ -135,6 +137,61 @@ Juego >> crearLaberinto2HabitacionesFMD:unFM [
 	self laberinto agregarHabitacion: hab1.
 	self laberinto agregarHabitacion: hab2.
 	
+	^self laberinto
+	
+]
+
+{ #category : #laberintos }
+Juego >> crearLaberinto4H4BFM:unFM [
+"unFM debe ser una instancia de Creator"
+
+	| hab1 hab2 hab3 hab4 p12 p13 p34 p24  norte sur este oeste|
+	
+	norte:=unFM fabricarNorte.
+	sur:=unFM fabricarSur.
+	este:=unFM fabricarEste.
+	oeste:=unFM fabricarOeste.
+	
+	hab1:=unFM fabricarHabitacion: 1.
+	hab2:=unFM fabricarHabitacion: 2.
+	hab3:=unFM fabricarHabitacion: 3.
+	hab4:=unFM fabricarHabitacion: 4.	
+	
+	p12:=unFM fabricarPuerta.
+	p12 lado1:hab1.
+	p12 lado2:hab2.
+	hab1 ponerEnOr:sur elemento:p12.
+	hab2 ponerEnOr:norte elemento:p12.
+	
+	p13:=unFM fabricarPuerta. "unFM fabricarPuertaLado1:unaHab lado2:otraHab"
+	p13 lado1:hab1.
+	p13 lado2:hab3.
+	hab1 ponerEnOr:este elemento:p13.
+	hab3 ponerEnOr:oeste elemento:p13.
+	
+	p34:=unFM fabricarPuerta.
+	p34 lado1:hab3.
+	p34 lado2:hab4.
+	hab3 ponerEnOr:sur elemento:p34.
+	hab4 ponerEnOr:norte elemento:p34.
+
+	p24:=unFM fabricarPuerta.
+	p24 lado1:hab2.
+	p24 lado2:hab4.
+	hab2 ponerEnOr:este elemento:p24.
+	hab4 ponerEnOr:oeste elemento:p24.
+	
+	self laberinto:unFM fabricarLaberinto.
+	self laberinto agregarHabitacion: hab1.
+	self laberinto agregarHabitacion: hab2.
+	self laberinto agregarHabitacion: hab3.
+	self laberinto agregarHabitacion: hab4.
+	
+	self agregarBicho:(unFM fabricarBichoAgresivo:hab1).
+	self agregarBicho:(unFM fabricarBichoAgresivo:hab3).
+	self agregarBicho:(unFM fabricarBichoPerezoso:hab2).
+	self agregarBicho:(unFM fabricarBichoPerezoso:hab4).
+
 	^self laberinto
 	
 ]
