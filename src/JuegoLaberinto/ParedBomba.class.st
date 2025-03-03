@@ -21,8 +21,3 @@ ParedBomba >> activa: anObject [
 
 	activa := anObject
 ]
-
-{ #category : #caminar }
-ParedBomba >> entrar [
-	Transcript show:'Te has chocado con una pared bomba';cr.
-]
