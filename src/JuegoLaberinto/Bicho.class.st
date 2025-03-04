@@ -33,6 +33,11 @@ Bicho >> esPerezoso [
 	^self modo esPerezoso
 ]
 
+{ #category : #consulta }
+Bicho >> estaVivo [
+	^self vidas > 0 
+]
+
 { #category : #initialization }
 Bicho >> iniAgresivo [
 	self modo:Agresivo new.
@@ -61,6 +66,11 @@ Bicho >> modo [
 Bicho >> modo: anObject [
 
 	modo := anObject
+]
+
+{ #category : #accessing }
+Bicho >> obtenerOrientacion [
+	^self posicion obtenerOrientacion
 ]
 
 { #category : #accessing }
