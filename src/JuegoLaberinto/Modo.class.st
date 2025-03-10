@@ -12,7 +12,7 @@ Class {
 Modo >> actua:unBicho [
 	"Template Method"
 	
-	"self dormir:unBicho."
+	self dormir:unBicho.
 	self caminar:unBicho.
 	self atacar:unBicho.
 ]
