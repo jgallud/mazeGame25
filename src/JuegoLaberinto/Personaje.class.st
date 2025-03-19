@@ -10,6 +10,37 @@ Class {
 	#category : #'JuegoLaberinto-Laberinto'
 }
 
+{ #category : #ataques }
+Personaje >> atacar [
+	self juego buscarBicho. "self juego buscarBicho:self"
+]
+
+{ #category : #ataques }
+Personaje >> heMuerto [
+	self juego muerePersonaje.
+	
+]
+
+{ #category : #'as yet unclassified' }
+Personaje >> irAlEste [
+	self posicion irAlEste:self
+]
+
+{ #category : #'as yet unclassified' }
+Personaje >> irAlNorte [
+	self posicion irAlNorte:self
+]
+
+{ #category : #'as yet unclassified' }
+Personaje >> irAlOeste [
+	self posicion irAlOeste:self
+]
+
+{ #category : #'as yet unclassified' }
+Personaje >> irAlSur [
+	self posicion irAlSur:self
+]
+
 { #category : #accessing }
 Personaje >> nombre [
 

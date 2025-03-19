@@ -15,6 +15,11 @@ Bicho >> actua [
 	self modo actua:self
 ]
 
+{ #category : #ataques }
+Bicho >> atacar [
+	self juego buscarPersonaje:self.
+]
+
 { #category : #consulta }
 Bicho >> esAgresivo [
 	^self modo esAgresivo
@@ -30,9 +35,9 @@ Bicho >> esPerezoso [
 	^self modo esPerezoso
 ]
 
-{ #category : #consulta }
-Bicho >> estaVivo [
-	^self vidas > 0 
+{ #category : #ataques }
+Bicho >> heMuerto [
+	self juego terminarBicho: self
 ]
 
 { #category : #initialization }
@@ -62,4 +67,10 @@ Bicho >> modo: anObject [
 { #category : #accessing }
 Bicho >> obtenerOrientacion [
 	^self posicion obtenerOrientacion
+]
+
+{ #category : #printing }
+Bicho >> printOn:aStream [
+
+	aStream nextPutAll:'Bicho-' ; nextPutAll:self modo asString.
 ]

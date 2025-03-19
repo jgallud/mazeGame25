@@ -20,12 +20,14 @@ Juego >> abrirPuertas [
 
 { #category : #'gestion-bichos' }
 Juego >> agregarBicho:unBicho [
-	self bichos add:unBicho
+	self bichos add:unBicho.
+	unBicho juego:self.
 ]
 
 { #category : #'as yet unclassified' }
 Juego >> agregarPersonaje:unaCadena [
 	self person:(Personaje new nombre:unaCadena).
+	self person juego:self.
 	self laberinto entrar:self person.
 ]
 
@@ -39,6 +41,24 @@ Juego >> bichos [
 Juego >> bichos: anObject [
 
 	bichos := anObject
+]
+
+{ #category : #ataques }
+Juego >> buscarBicho [
+	|bicho posPerson|
+	
+	posPerson:=self person posicion.
+	bicho :=self bichos detect:[:each | each estaVivo and:[each posicion = posPerson ]] ifNone:[nil].
+	bicho ifNotNil:[ bicho esAtacadoPor: self person ].
+]
+
+{ #category : #ataques }
+Juego >> buscarPersonaje:unBicho [
+	| posBicho posPerson|
+	posBicho:=unBicho posicion. "mensajes 8 y 9"
+	posPerson:=self person posicion. "mensajes 10 y 11"
+	
+	posBicho = posPerson ifTrue:[ self person esAtacadoPor:unBicho].
 ]
 
 { #category : #'as yet unclassified' }
@@ -122,6 +142,9 @@ Juego >> crearLaberinto2HabitacionesFM:unFM [
 	self laberinto:unFM fabricarLaberinto.
 	self laberinto agregarHabitacion: hab1.
 	self laberinto agregarHabitacion: hab2.
+	
+	self agregarBicho:(unFM fabricarBichoAgresivo:hab1).
+	self agregarBicho:(unFM fabricarBichoPerezoso:hab2).
 	
 	^self laberinto
 	
@@ -219,6 +242,20 @@ Juego >> eliminarBicho:unBicho [
 	self bichos remove:unBicho ifAbsent:[Transcript show:'No existe ese bicho';cr.]
 ]
 
+{ #category : #'gestion-bichos' }
+Juego >> estanTodosLosBichosMuertos [
+	|bicho|
+	
+	bicho :=self bichos detect: [ :each | each estaVivo ] ifNone:[nil].
+	(bicho isNil and:[ self person estaVivo ]) ifTrue:[ self ganaPersonaje]
+	
+]
+
+{ #category : #'gestion-bichos' }
+Juego >> ganaPersonaje [
+	Transcript show:'Fin juego: gana el personaje';cr.
+]
+
 { #category : #accessing }
 Juego >> hilos [
 
@@ -266,6 +303,12 @@ Juego >> lanzarBichos [
 	self bichos do:[:each | self lanzarBicho:each]
 ]
 
+{ #category : #ataques }
+Juego >> muerePersonaje [
+	Transcript show:'Fin del juego: Ganan los bichos';cr.
+	self terminarBichos.
+]
+
 { #category : #accessing }
 Juego >> obtenerHabitacion:unNum [
 
@@ -289,6 +332,9 @@ Juego >> person: anObject [
 Juego >> terminarBicho:unBicho [
 	unBicho vidas:0.
 	Transcript show:unBicho printString ; nextPutAll: ' muere';cr.
+	
+	"comprobar si todos los bichos están muertos ¿es nuestra condición de fin de juego?"
+	self estanTodosLosBichosMuertos
 
 ]
 
