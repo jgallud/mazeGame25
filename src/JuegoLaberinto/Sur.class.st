@@ -22,7 +22,8 @@ Sur class >> new [
 Sur >> caminar:unBicho [
 	| pos |
 	pos := unBicho posicion.
-	pos sur entrar:unBicho
+	"pos sur entrar:unBicho"
+	pos irAlSur:unBicho
 ]
 
 { #category : #'gestion-orientaciones' }

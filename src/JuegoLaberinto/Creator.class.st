@@ -77,9 +77,10 @@ Creator >> fabricarEste [
 Creator >> fabricarHabitacion:unNum [
 	|hab|
 	hab:=Habitacion new.
+	hab forma:Cuadrado new.
 	hab num:unNum.
 	hab agregarOrientacion: self fabricarNorte; agregarOrientacion:self fabricarSur; agregarOrientacion:self fabricarEste; agregarOrientacion:self fabricarOeste.
-	hab orientaciones do:[:each | hab ponerEnOr:each elemento:self fabricarPared].
+	hab obtenerOrientaciones do:[:each | hab ponerEnOr:each elemento:self fabricarPared].
 	^hab	
 ]
 

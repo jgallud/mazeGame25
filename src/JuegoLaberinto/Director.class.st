@@ -71,6 +71,7 @@ Director >> fabricarLaberintoRecursivo:unDic en:padre [
 
 "hojas: hay que indicar el contenedor donde va la hoja"
 (unDic at:'tipo')='bomba' ifTrue:[ self builder fabricarBombaEn:padre].
+(unDic at:'tipo')='tunel' ifTrue:[ self builder fabricarTunelEn:padre].
 
 (unDic at:'hijos' ifAbsent:[^nil]) do:[:each | self fabricarLaberintoRecursivo:each en:con].
 ]
@@ -78,7 +79,8 @@ Director >> fabricarLaberintoRecursivo:unDic en:padre [
 { #category : #'as yet unclassified' }
 Director >> iniBuilder [
 	"aquí podemos cambiar el Builder para crear laberintos diferentes"
-	self builder:LaberintoBuilder new.
+	(self dict at:'forma') = 'cuadrado' ifTrue:[ self builder:LaberintoBuilder new].
+	(self dict at:'forma') = 'rombo' ifTrue:[ self builder:LaberintoBuilderRombo new].
 	
 ]
 

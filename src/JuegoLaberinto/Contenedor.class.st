@@ -6,12 +6,8 @@ Class {
 	#superclass : #ElementoMapa,
 	#instVars : [
 		'hijos',
-		'orientaciones',
-		'este',
-		'norte',
-		'num',
-		'oeste',
-		'sur'
+		'forma',
+		'num'
 	],
 	#category : #'JuegoLaberinto-Laberinto'
 }
@@ -25,7 +21,7 @@ Contenedor >> agregarHijo:unEM [
 
 { #category : #'gestion-orientaciones' }
 Contenedor >> agregarOrientacion:unaOr [
-	self orientaciones add:unaOr.
+	self forma agregarOrientacion:unaOr.
 ]
 
 { #category : #'gestion-hijos' }
@@ -41,15 +37,15 @@ Contenedor >> entrar:alguien [
 ]
 
 { #category : #accessing }
-Contenedor >> este [
+Contenedor >> forma [
 
-	^ este
+	^ forma
 ]
 
 { #category : #accessing }
-Contenedor >> este: anObject [
+Contenedor >> forma: anObject [
 
-	este := anObject
+	forma := anObject
 ]
 
 { #category : #accessing }
@@ -67,29 +63,31 @@ Contenedor >> hijos: anObject [
 { #category : #initialization }
 Contenedor >> initialize [ 
 	hijos:=OrderedCollection new.
-	orientaciones:=OrderedCollection new.
+	
+]
+
+{ #category : #movimiento }
+Contenedor >> irAlEste:alguien [
+	"self norte entrar:alguien"
+	self forma irAlEste:alguien
 ]
 
 { #category : #movimiento }
 Contenedor >> irAlNorte:alguien [
-	self norte entrar:alguien
+	"self norte entrar:alguien"
+	self forma irAlNorte:alguien
+]
+
+{ #category : #movimiento }
+Contenedor >> irAlOeste:alguien [
+	"self norte entrar:alguien"
+	self forma irAlOeste:alguien
 ]
 
 { #category : #movimiento }
 Contenedor >> irAlSur:alguien [
-	self sur entrar:alguien
-]
-
-{ #category : #accessing }
-Contenedor >> norte [
-
-	^ norte
-]
-
-{ #category : #accessing }
-Contenedor >> norte: anObject [
-
-	norte := anObject
+	"self sur entrar:alguien"
+	self forma irAlSur:alguien
 ]
 
 { #category : #accessing }
@@ -106,44 +104,29 @@ Contenedor >> num: anObject [
 
 { #category : #'gestion-orientaciones' }
 Contenedor >> obtenerElementoOr:unaOr [
-	^unaOr obtenerElementoOrEn:self
+	"^unaOr obtenerElementoOrEn:self"
+	^self forma obtenerElementoOr: unaOr
 ]
 
 { #category : #'gestion-orientaciones' }
 Contenedor >> obtenerOrientacion [
-	| ind |
+	"obtener orientacion aleatoria"
+	"| ind |
 	ind:=(1 to:self orientaciones size) atRandom.
-	^self orientaciones at:ind.
+	^self orientaciones at:ind."
+	^self forma obtenerOrientacion 
 	
 ]
 
-{ #category : #accessing }
-Contenedor >> oeste [
-
-	^ oeste
-]
-
-{ #category : #accessing }
-Contenedor >> oeste: anObject [
-
-	oeste := anObject
-]
-
-{ #category : #accessing }
-Contenedor >> orientaciones [
-
-	^ orientaciones
-]
-
-{ #category : #accessing }
-Contenedor >> orientaciones: anObject [
-
-	orientaciones := anObject
+{ #category : #'gestion-orientaciones' }
+Contenedor >> obtenerOrientaciones [
+	^self forma obtenerOrientaciones
 ]
 
 { #category : #accessing }
 Contenedor >> ponerEnOr:unaOr elemento:unEM [
-	unaOr ponerElemento:unEM en:self.
+	"unaOr ponerElemento:unEM en:self."
+	self forma ponerEnOr:unaOr elemento:unEM
 ]
 
 { #category : #recorrido }
@@ -151,17 +134,5 @@ Contenedor >> recorrer:unBloque [
 
 	unBloque value:self.
 	self hijos do:[:each | each recorrer:unBloque].
-	self orientaciones do:[:each | each recorrer:unBloque contenedor:self].
-]
-
-{ #category : #accessing }
-Contenedor >> sur [
-
-	^ sur
-]
-
-{ #category : #accessing }
-Contenedor >> sur: anObject [
-
-	sur := anObject
+	self obtenerOrientaciones do:[:each | each recorrer:unBloque contenedor:self forma].
 ]
