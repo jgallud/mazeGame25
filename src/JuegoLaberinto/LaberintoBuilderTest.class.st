@@ -88,6 +88,7 @@ LaberintoBuilderTest >> comprobarPuertaDe:unNum orientacion:unaOr a:otroNum orie
 { #category : #'as yet unclassified' }
 LaberintoBuilderTest >> comprobarTunelEn:unContenedor [	
 	self assert:((unContenedor hijos detect:[:each | each esTunel ] ifNone:[nil]) esTunel).
+	"comprobar que funciona el Proxy virtual"
 ]
 
 { #category : #accessing }
@@ -132,11 +133,8 @@ LaberintoBuilderTest >> setUp [
 	super setUp.
 
 	self director:Director new.
-	"laptop"
 	ruta:='C:\Users\Jose.Gallud\CloudStation\asignaturas\diseño de sofware\curso24-25\laberintos\'.
-	"pc"
-	ruta:='C:\Users\jgallud\CloudStation\asignaturas\diseño de sofware\curso24-25\laberintos\'.
-	self director procesar: ruta,'lab2Hab.json'.
+	self director procesar: ruta,'lab4Hab2Arm2Bm.json'.
 	self dict:self director dict.
 	self juego:director obtenerJuego.
 	self juego agregarPersonaje:'Pepe'.
@@ -144,18 +142,19 @@ LaberintoBuilderTest >> setUp [
 
 { #category : #tests }
 LaberintoBuilderTest >> testBichoAtaca [
-	|hab bicho person vidasAntes|
-	hab:=self juego obtenerHabitacion: 1.
-	bicho:=self juego bichos at:1.
-	person:=self juego person.
-	hab entrar:bicho.
-	hab entrar:person.
-	
-	self assert:bicho posicion equals:person posicion.
-	vidasAntes:=person vidas.
+
+	| hab1 bicho person vidas |
+	hab1 := juego obtenerHabitacion: 1.
+	bicho := juego bichos at: 1. "obtenerBicho:1"
+	self assert: bicho notNil.
+	person := juego person.
+	"assert person notnil"
+	hab1 entrar: bicho.
+	hab1 entrar: person.
+	self assert: bicho posicion equals: person posicion.
+	vidas := person vidas.
 	bicho atacar.
-	self assert:vidasAntes equals:person vidas+bicho poder.
-	
+	self assert: vidas equals: person vidas + bicho poder
 ]
 
 { #category : #tests }
@@ -185,16 +184,17 @@ LaberintoBuilderTest >> testPersonaje [
 
 { #category : #tests }
 LaberintoBuilderTest >> testPersonajeAtaca [
-	|hab bicho person vidasAntes|
-	hab:=self juego obtenerHabitacion: 1.
-	bicho:=self juego bichos at:1.
-	person:=self juego person.
-	hab entrar:bicho.
-	hab entrar:person.
-	
-	self assert:bicho posicion equals:person posicion.
-	vidasAntes:=bicho vidas.
-	person atacar.
-	self assert:vidasAntes equals:bicho vidas+person poder.
-	
+
+	| hab1 bicho person vidas |
+	hab1 := juego obtenerHabitacion: 1.
+	bicho := juego bichos at: 1. "obtenerBicho:1"
+	self assert: bicho notNil.
+	person := juego person.
+	"assert person notnil"
+	hab1 entrar: bicho.
+	hab1 entrar: person.
+	self assert: bicho posicion equals: person posicion.
+	vidas := person vidas.
+	bicho atacar.
+	self assert: vidas equals: person vidas + bicho poder
 ]

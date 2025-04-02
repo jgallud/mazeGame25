@@ -15,6 +15,11 @@ Personaje >> atacar [
 	self juego buscarBicho. "self juego buscarBicho:self"
 ]
 
+{ #category : #caminar }
+Personaje >> crearNuevoLaberinto:unTunel [
+	unTunel crearNuevoLaberinto:self.
+]
+
 { #category : #ataques }
 Personaje >> heMuerto [
 	self juego muerePersonaje.

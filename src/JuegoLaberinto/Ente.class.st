@@ -14,6 +14,18 @@ Class {
 	#category : #'JuegoLaberinto-Laberinto'
 }
 
+{ #category : #'as yet unclassified' }
+Ente >> buscarTunel [
+	"self subclassResponsibility"
+	" nada "
+	" comportamiento predeterminado"
+]
+
+{ #category : #caminar }
+Ente >> crearNuevoLaberinto:unTunel [
+
+]
+
 { #category : #ataques }
 Ente >> esAtacadoPor:alguien [
 
@@ -52,6 +64,11 @@ Ente >> juego [
 Ente >> juego: anObject [
 
 	juego := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Ente >> juegoClonaLaberinto [
+	^self juego clonarLaberinto 
 ]
 
 { #category : #accessing }

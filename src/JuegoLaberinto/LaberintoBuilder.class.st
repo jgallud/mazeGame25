@@ -53,14 +53,14 @@ LaberintoBuilder >> fabricarBichoAgresivo:unaHab [
 	bicho modo: Agresivo new.
 	bicho vidas:5.
 	bicho poder:5.
-	bicho posicion:unaHab.
+	unaHab entrar:bicho.
   ^bicho
 ]
 
 { #category : #'as yet unclassified' }
 LaberintoBuilder >> fabricarBichoModo:strModo posicion:unNum [
 	|hab bicho|
-	hab:=self laberinto obtenerHabitacion: unNum.
+	hab:=self juego obtenerHabitacion: unNum.
 		
 	bicho:=self perform:('fabricarBicho',strModo) asSymbol.
 	hab entrar:bicho.
@@ -119,7 +119,8 @@ LaberintoBuilder >> fabricarHabitacion:unNum [
 { #category : #'metodos fabricacion' }
 LaberintoBuilder >> fabricarJuego [
 	self juego:Juego new.
-	self juego laberinto:self laberinto.
+	self juego prototipo:self laberinto.
+	self juego laberinto:self juego clonarLaberinto.
 ]
 
 { #category : #'metodos fabricacion' }
