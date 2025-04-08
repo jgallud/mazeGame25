@@ -7,10 +7,33 @@ Class {
 	#name : #ElementoMapa,
 	#superclass : #Object,
 	#instVars : [
-		'padre'
+		'padre',
+		'comandos'
 	],
 	#category : #'JuegoLaberinto-Laberinto'
 }
+
+{ #category : #comandos }
+ElementoMapa >> agregarComando:unComando [
+	self comandos add:unComando
+]
+
+{ #category : #accessing }
+ElementoMapa >> comandos [
+
+	^ comandos
+]
+
+{ #category : #accessing }
+ElementoMapa >> comandos: anObject [
+
+	comandos := anObject
+]
+
+{ #category : #comandos }
+ElementoMapa >> eliminarComando:unComando [
+	self comandos remove:unComando ifAbsent:["no existe ese objeto"]
+]
 
 { #category : #caminar }
 ElementoMapa >> entrar:alguien [
@@ -50,6 +73,16 @@ ElementoMapa >> esPuerta [
 { #category : #consulta }
 ElementoMapa >> esTunel [
 	^false
+]
+
+{ #category : #initialization }
+ElementoMapa >> initialize [
+	comandos:=OrderedCollection new.
+]
+
+{ #category : #comandos }
+ElementoMapa >> obtenerComandos [
+	^self comandos
 ]
 
 { #category : #accessing }

@@ -349,6 +349,7 @@ Juego >> prototipo: anObject [
 { #category : #'gestion-bichos' }
 Juego >> terminarBicho:unBicho [
 	unBicho vidas:0.
+	
 	Transcript show:unBicho printString ; nextPutAll: ' muere';cr.
 	
 	"comprobar si todos los bichos están muertos ¿es nuestra condición de fin de juego?"

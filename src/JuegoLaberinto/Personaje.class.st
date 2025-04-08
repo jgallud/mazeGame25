@@ -11,19 +11,14 @@ Class {
 }
 
 { #category : #ataques }
-Personaje >> atacar [
-	self juego buscarBicho. "self juego buscarBicho:self"
+Personaje >> avisar [
+	self juego muerePersonaje.
+	
 ]
 
 { #category : #caminar }
 Personaje >> crearNuevoLaberinto:unTunel [
 	unTunel crearNuevoLaberinto:self.
-]
-
-{ #category : #ataques }
-Personaje >> heMuerto [
-	self juego muerePersonaje.
-	
 ]
 
 { #category : #'as yet unclassified' }
@@ -56,4 +51,18 @@ Personaje >> nombre [
 Personaje >> nombre: anObject [
 
 	nombre := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Personaje >> obtenerComandos [
+	| lista |
+	
+	lista:=OrderedCollection new.
+	self posicion recorrer:[:each | lista addAll:each obtenerComandos].
+	^lista
+]
+
+{ #category : #ataques }
+Personaje >> puedeAtacar [
+	self juego buscarBicho. 
 ]

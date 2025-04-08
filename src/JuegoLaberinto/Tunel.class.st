@@ -12,13 +12,8 @@ Class {
 
 { #category : #caminar }
 Tunel >> crearNuevoLaberinto:alguien [
-	Transcript show:alguien printString ; nextPutAll:' crea un nuevo laberinto';cr.
-	self laberinto:alguien juegoClonaLaberinto.
-	Transcript
-				show: alguien printString;
-				nextPutAll: ' entra en un nuevo laberinto';
-				cr.
-	self laberinto entrar:alguien 
+	 Transcript show:alguien printString ; nextPutAll:' crea un nuevo laberinto';cr.
+	 self laberinto:alguien juegoClonaLaberinto.
 ]
 
 { #category : #caminar }
